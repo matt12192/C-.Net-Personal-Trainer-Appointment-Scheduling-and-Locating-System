@@ -1,0 +1,230 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="MasterPage.master.cs" Inherits="Masterpages_MasterPage" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title>FindaTrainerNI</title>
+     <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    
+    <link href="../Content/bootstrapcustom.css" rel="stylesheet" />
+    
+    <link href="../Content/bootstrap-datetimepicker.css" rel="stylesheet" />
+    
+    
+    <asp:ContentPlaceHolder id="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+       
+       <nav class="navbar navbar-inverse .navbar-fixed-top" role="navigation">
+    <div class="container-fluid">
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="#">FindaTrainerNI</a>
+      </div>
+ 
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav">
+          <li ><a href="../ClientPages/Home.aspx" runat="server" id="hrefH">Homepage<span class="glyphicon glyphicon-home"></span></a></li>
+          <li ><a href="../ClientPages/SearchTrainer.aspx" runat="server" id="hrefST" visible="false">Trainer Search <span class="glyphicon glyphicon-search"></span></a></li>
+         
+        <li><a class="dropdown-toggle" data-toggle="dropdown" href="#" runat="server" id="hrefMA" visible="false">My Area
+        <span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          <li><a href="../ClientPages/MyAppointment.aspx">My Appointments</a></li>
+          <li><a href="../ClientPages/MyDetails.aspx">My Details</a></li>
+          <li><a href="../ClientPages/MyEmails.aspx">My Emails</a></li> 
+        </ul>
+      </li>
+
+
+
+           <li><a href="../ClientPages/Contact.aspx" runat="server" id="hrefCU">Contact Us </a></li>
+        </ul>
+          <ul class="nav navbar-nav navbar-right">
+      
+      
+              <li> 
+                  <asp:Button ID="btnLogout" runat="server" CssClass="btn-link" Text="Logout" Visible="False" CausesValidation="true" formnovalidate />
+                  <asp:HyperLink ID="btnhrefLogin" runat="server" CssClass="btn-link" Visible="True" NavigateUrl="~/Pages/Login.aspx" CausesValidation="true" formnovalidate>Login</asp:HyperLink>
+                  
+               
+              </li>
+    </ul>
+        
+     </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+  </nav>
+
+        <div class="container-fluid text-center">
+            <div class="row content">
+                <div class="col-sm-1 sidenav"></div>
+    
+    
+    <div class="col-sm-10 text-left"> 
+       <asp:ContentPlaceHolder id="ContentPlaceHolder1" runat="server">
+        
+        </asp:ContentPlaceHolder>
+    </div>
+                <div class="col-sm-1 sidenav"></div>
+   
+      
+    
+  </div>
+       
+    </div>
+    <footer class="container-fluid modal-footer .navbar-fixed-bottom">
+  <div class="center-block text-center">
+
+
+ <p>Copyright FindatrainerNI 2016 by Matthew Boden</p>
+
+<asp:LoginName ID="LoginName1" runat="server" FormatString="Logged in as {0}" />
+
+
+  </div>
+       
+        </footer>
+    </form>
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script src="../Scripts/jquery-2.2.0.min.js"></script>
+    <script src="../Scripts/modernizr-2.8.3.js"></script>
+    <script src="../Scripts/bootstrap.min.js"></script>
+    
+    <script src="../Scripts/moment.min.js"></script>
+    <script src="../Scripts/bootstrap-datetimepicker.min.js"></script>
+    <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyCMzxPoPrV462_3bH2sTnRK2qOWo5UxfBI"></script> 
+   
+    <script src="../Scripts/Script.js"></script>
+
+    
+  
+    
+  
+    
+    
+    
+    
+    <script>
+        $(document).ready(function () {
+            $("#Register").hide();
+
+            $("#CreateUserLink").click(function () {
+                $("#Register").show("slow");
+                $("#login").hide();
+               
+
+            });
+
+
+
+        })
+
+    </script>
+
+   
+    <script type="text/javascript">
+
+
+        $(document).ready(function () {
+            $('#datetimepicker1').datetimepicker({
+                format: 'DD/MM/YYYY'
+            });
+        });
+        
+        $(document).ready(function () {
+            $('#datetimepicker2').datetimepicker({
+                format: 'hh:00 A'
+            });
+        });
+
+       
+        $(document).ready(function () {
+            $('#date1').datetimepicker({
+                format: 'DD/MM/YYYY'
+            });
+        });
+
+        $(document).ready(function () {
+            $('#date2').datetimepicker({
+                format: 'DD/MM/YYYY'
+            });
+        });
+
+          
+        </script>
+
+
+
+          <script type="text/javascript">
+              //Get location and display on Map based on coordinates
+              if (navigator.geolocation) {
+                  navigator.geolocation.getCurrentPosition(function (position) {
+                      var Trainer_Address = '<%=Session["Trainer_Address"]%>';
+                      var Trainer_Postcode = '<%=Session["Trainer_Postcode"]%>';
+                      var Trainer_City = '<%=Session["Trainer_City"]%>';
+                      var Lat = '<%=Session["Lat"]%>';
+                      var Lng = '<%=Session["Lng"]%>';
+                      var LatLng = new google.maps.LatLng(Lat, Lng);
+                      var mapOptions = {
+                          center: LatLng,
+                          zoom: 13,
+                          mapTypeId: google.maps.MapTypeId.ROADMAP
+                      };
+                      var map = new google.maps.Map(document.getElementById("dvMap"), mapOptions);
+                      var marker = new google.maps.Marker({
+                          position: LatLng,
+                          map: map,
+                          title: "<div style = 'height:100px;width:200px'><b>Trainer location:</b><br />Address: " + Trainer_Address + "<br />Postcode: " + Trainer_Postcode + "<br />City: " + Trainer_City
+                      });
+                      google.maps.event.addListener(marker, "click", function (e) {
+                          var infoWindow = new google.maps.InfoWindow();
+                          infoWindow.setContent(marker.title);
+                          infoWindow.open(map, marker);
+                      });
+                  });
+              } else {
+                  alert('Geo Location feature is not supported in this browser.');
+              }
+</script>
+
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        //Script to assign checkout values
+        var Trainer_Name = '<%=Session["Trainer_Name"]%>';
+        var Cost = '<%=Session["Total"]%>';
+        
+
+        $('#TrainerName').val(Trainer_Name);
+        
+        $('#value').val(Cost);
+        });
+    </script>
+
+    <script>
+        $(document).ready(function () {
+            $('[data-toggle="tooltip"]').tooltip();
+        });
+</script>
+   
+
+</body>
+</html>
+
